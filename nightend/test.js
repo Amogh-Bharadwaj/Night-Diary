@@ -108,11 +108,11 @@ app.use(cors())
 app.use(express.json())
 app.listen(5000, () => console.log(`Listening on port ${port}`)); 
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../Night-Diary/build')));
 
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../Night-Diary/build/index.html'));
 });
 
 
