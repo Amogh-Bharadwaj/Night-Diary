@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "cd nightend && npm install && npm start",
-  "heroku-postbuild": "cd Night-Diary && npm install && npm run build"
+      "start": "cd nightend && sudo npm install && sudo npm start",
+  "heroku-postbuild": "cd Night-Diary && sudo npm install && sudo npm run build"
   },
   "keywords": [],
   "author": "",
