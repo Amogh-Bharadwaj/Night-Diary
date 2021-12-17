@@ -56,7 +56,7 @@ const Entry=()=>{
 
       else{
         fetch(
-          `http://127.0.0.1:5000/entry`,
+          `https://night-diary.herokuapp.com/entry`,
           {
             method: "POST",
             body: JSON.stringify({

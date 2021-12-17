@@ -81,8 +81,8 @@ async function messageGet(name) {
     { projection:{message:1,title:1,time:1,_id: 0 }}
 ).toArray();
  
-  console.log("name: ",name)
-  console.log(diaries);
+  //console.log("name: ",name)
+  //console.log(diaries);
     
  
   //await client.close();
