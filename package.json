@@ -8,6 +8,9 @@
       "start": "cd nightend && sudo npm install && sudo npm start",
   "heroku-postbuild": "cd Night-Diary && sudo npm install && sudo npm run build"
   },
+  "engines": {
+    "node": "16.11.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
