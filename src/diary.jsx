@@ -77,7 +77,7 @@ const Diary=()=>{
    
     const Delete=(time)=>{
         fetch(
-            `https://night-diary.herokuapp.com/delete`,
+            `/delete`,
             {
               method: "POST",
               body: JSON.stringify({
@@ -100,7 +100,7 @@ const Diary=()=>{
        
 
         fetch(
-            `https://night-diary.herokuapp.com/new`,
+            `/new`,
             {
               method: "POST",
               body: JSON.stringify({
@@ -133,7 +133,7 @@ const Diary=()=>{
         
         setLoading("block");  
         fetch(
-            `https://night-diary.herokuapp.com/diaries`,
+            `/diaries`,
             {
               method: "POST",
               body: JSON.stringify({

@@ -5,7 +5,7 @@ require('dotenv').config()
 var app = express()
 var CryptoJS = require("crypto-js");
 const port = process.env.PORT
-
+path = require('path');
 
 const { MongoClient } = require('mongodb');
 
@@ -107,6 +107,14 @@ async function deleteMsg(time) {
 app.use(cors())
 app.use(express.json())
 app.listen(5000, () => console.log(`Listening on port ${port}`)); 
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 
 app.post('/entry', (req, res) => { 
   const username = req.body.username;
