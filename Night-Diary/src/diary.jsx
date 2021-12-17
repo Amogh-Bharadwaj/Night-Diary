@@ -179,7 +179,7 @@ const Diary=()=>{
             </Text>
             <Input 
              mt={10}
-             mb={5}
+             mb={6}
              value={title}
              fontSize="2xl"
              fontWeight="bold"
