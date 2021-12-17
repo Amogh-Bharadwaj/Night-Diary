@@ -172,7 +172,7 @@ const Diary=()=>{
             <Text
              fontSize="5xl"
              textColor="white"
-             my={10}
+             my={9}
             >
                 {name}'s Entry
 
