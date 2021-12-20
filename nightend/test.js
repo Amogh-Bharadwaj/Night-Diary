@@ -106,7 +106,7 @@ async function deleteMsg(time) {
 
 app.use(cors())
 app.use(express.json())
-app.listen(5000, () => console.log(`Listening on port ${port}`)); 
+app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
 app.use(express.static(path.join(__dirname, '../Night-Diary/build')));
 
