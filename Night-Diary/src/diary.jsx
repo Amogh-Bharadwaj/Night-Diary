@@ -212,18 +212,18 @@ const Diary=()=>{
             align="center"
             justify="space-evenly"
             boxShadow="0px 5px 5px black"
-            w="45%"
+            w={{base:"90%",md:"45%"}}
             h="10vh">
 
             <Button
-             w="15%"
+             w={{base:"20%",md:"15%"}}
              bgGradient="linear(green.500,green.700)"
              boxShadow="0px 5px 5px black" 
              _hover={{bgGradient:"linear(green.700,green.800)"}}
              onClick={()=>{Post(getDate())}}
             >
                 <Text
-                fontSize="lg"
+                 fontSize={{base:"md",md:"lg"}}
                 textColor="white"
                 >
                     Post
@@ -232,7 +232,7 @@ const Diary=()=>{
             </Button>
 
             <Button
-             w="15%"
+              w={{base:"20%",md:"15%"}}
              bgGradient="linear(yellow.300,yellow.500)"
              boxShadow="0px 5px 5px black" 
              _hover={{bgGradient:"linear(yellow,yellow.700)"}}
@@ -240,7 +240,7 @@ const Diary=()=>{
              mx={3}
             >
                 <Text
-                fontSize="lg"
+                fontSize={{base:"md",md:"lg"}}
                 textColor="black"
                 >
                     Clear
@@ -249,7 +249,7 @@ const Diary=()=>{
             </Button>
 
             <Button
-             w="15%"
+              w={{base:"20%",md:"15%"}}
              bgGradient="linear(red.800,red.700)"
              boxShadow="0px 5px 5px black" 
              _hover={{bgGradient:"linear(red.800,red.500)"}}
@@ -257,7 +257,7 @@ const Diary=()=>{
              mx={3}
             >
                 <Text
-                fontSize="lg"
+                 fontSize={{base:"md",md:"lg"}}
                 textColor="black"
                 >
                     Exit
@@ -279,7 +279,7 @@ const Diary=()=>{
         <VStack
           spacing={6}
           mt={10}
-          w="50%"
+          w={{base:"90%",md:"50%"}}
           h="50vh"
           overflowY="auto"
 
@@ -308,7 +308,7 @@ const Diary=()=>{
                      p={10}
                     >
                         <Text 
-                         fontSize="2xl"
+                         fontSize={{base:"lg",md:"xl",lg:"2xl"}}
                          >
                              {entry.time}
                              <br/>
@@ -316,7 +316,7 @@ const Diary=()=>{
                          </Text>
 
                          <Button
-                            w="15%"
+                             w={{base:"40%",md:"15%"}}
                             
                             bgGradient="linear(green.300,green.700)"
                              mt={2}
@@ -333,7 +333,7 @@ const Diary=()=>{
                         </Button>   
 
                         <Button
-                            w="15%"
+                            w={{base:"40%",md:"15%"}}
                             bgGradient="linear(red.300,red.700)"
                              mt={2}
                              ml={4}
