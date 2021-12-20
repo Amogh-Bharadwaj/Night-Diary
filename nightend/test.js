@@ -4,7 +4,7 @@ var cors = require('cors')
 require('dotenv').config()
 var app = express()
 var CryptoJS = require("crypto-js");
-const port = process.env.PORT
+const port = (process.env.PORT || 5000);
 path = require('path');
 
 const { MongoClient } = require('mongodb');
