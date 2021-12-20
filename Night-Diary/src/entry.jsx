@@ -151,7 +151,7 @@ const Entry=()=>{
                         </InputGroup>
 
                         <Button
-                          h="20%"
+                          h="15%"
                           w="100%"
                           onClick={Login}
                           bgColor="#093A53"
