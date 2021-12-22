@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react"
+
 import { useNavigate,useParams } from "react-router";
 import {
     Flex,
@@ -15,7 +16,8 @@ import {
     Button,
     Textarea,
     Divider,
-    Spinner
+    Spinner,
+    useToast
 } from "@chakra-ui/react";
 
 import{
@@ -36,6 +38,8 @@ const Diary=()=>{
     // Routing
     const {name} = useParams();
     const navigate = useNavigate();
+
+    const toast = useToast();
 
     const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
     
@@ -58,6 +62,7 @@ const Diary=()=>{
     const Open=(t,m)=>{
         setTitle(t);
         setMessage(m);
+        window.scrollTo(0, 0);
     }
     
     const getTitle=(e)=>{
@@ -72,6 +77,7 @@ const Diary=()=>{
     }
 
     const Exit=()=>{
+        localStorage.clear();
         navigate('/');
     }
    
@@ -127,6 +133,13 @@ const Diary=()=>{
               
             })
             setLoading("none"); 
+            toast({
+                title: 'Your new entry has been added!',
+                description: "Scroll down to check.",
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+              })
     }
 
     const Diaries=()=>{

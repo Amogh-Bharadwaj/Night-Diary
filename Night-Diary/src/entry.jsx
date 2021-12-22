@@ -72,9 +72,12 @@ const Entry=()=>{
           .then((json) => {
             let status = json.Status;
             if(status=="Successfully entered." || status=="New user account created."){
+              localStorage.setItem("jwt", json.JWT);
+              console.log(json.JWT)
               navigate('/diary/'+name,{state:{Name:name}});
             }
             else{
+
               setError(status);
             }
             

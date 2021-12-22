@@ -12,6 +12,9 @@ const { MongoClient } = require('mongodb');
 const uri = process.env.MURL;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const jwt = require('jsonwebtoken');
+
+
 
 async function entryInsert(name,password) {
 
@@ -29,7 +32,7 @@ async function entryInsert(name,password) {
       }
 
       const insert = await user.insertOne(userCred);
-      return {"Status":"New user account created."}
+      return {"Status":"New user account created.","JWT":generateAccessToken(name)}
     }
 
     if(username[0].password != password){
@@ -37,7 +40,7 @@ async function entryInsert(name,password) {
     };
 
     //await client.close();
-    return {"Status":"Successfully entered."};
+    return {"Status":"Successfully entered.","JWT":generateAccessToken(name)};
   
 }
 
@@ -81,11 +84,7 @@ async function messageGet(name) {
     { projection:{message:1,title:1,time:1,_id: 0 }}
 ).toArray();
  
-  //console.log("name: ",name)
-  //console.log(diaries);
-    
- 
-  //await client.close();
+
   return {"Diaries":diaries};
 }
 
@@ -103,6 +102,9 @@ async function deleteMsg(time) {
 }
 
 
+function generateAccessToken(username) {
+  return jwt.sign({username:username}, process.env.SECRET, { expiresIn: '1000s' });
+}
 
 app.use(cors())
 app.use(express.json())
@@ -119,7 +121,8 @@ app.get('/*', (req, res) => {
 app.post('/entry', (req, res) => { 
   const username = req.body.username;
   const password = CryptoJS.SHA256(req.body.password).toString();
-  entryInsert(username,password).then(auth => res.send(auth)); 
+  entryInsert(username,password).then(auth => res.send(auth));
+
 }); 
 
 app.post('/new', (req,res)=>{
@@ -144,5 +147,29 @@ app.post('/delete',(req,res)=>{
 
   deleteMsg(time).then(status => res.send(status));
 
+})
+
+app.post('/authorise',(req,res)=>{
+  console.log("Entered authorise");
+  const authHeader = req.headers.authorization;
+  console.log("Entered authenticateJWT");
+  if (authHeader) {
+      const token = authHeader.split(' ')[1];
+
+      jwt.verify(token, process.env.SECRET, (err, user) => {
+          if (err) {
+              return res.sendStatus(403);
+          }
+
+          req.user = user;
+          console.log(user.username);
+          res.send(user);
+          
+      });
+  } else {
+      res.sendStatus(401);
+  }
+  
+  
 })
 
