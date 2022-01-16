@@ -105,7 +105,7 @@ const Entry=()=>{
             >   
 
                 <Text
-                  textColor="blue.500"
+                  textColor="blue.300"
                   fontSize={{base:"2xl",md:"4xl"}}
                   my={5}
                 >
