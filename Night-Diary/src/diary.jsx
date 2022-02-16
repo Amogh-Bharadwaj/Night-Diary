@@ -17,7 +17,8 @@ import {
     Textarea,
     Divider,
     Spinner,
-    useToast
+    useToast,
+    InputRightElement
 } from "@chakra-ui/react";
 
 import{
@@ -32,9 +33,9 @@ const Diary=()=>{
     const [message,setMessage] = useState("");
     const [loading,setLoading] = useState("none");
     const [title,setTitle]=useState("");
-    const [searchQuery, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [error,setError] = useState("");
+    const [query, setQuery] = useState("");
     // Routing
     const {name} = useParams();
     const navigate = useNavigate();
@@ -142,6 +143,10 @@ const Diary=()=>{
               })
     }
 
+    const Search=()=>{
+
+    }
+
     const Diaries=()=>{
         
         setLoading("block");  
@@ -168,10 +173,24 @@ const Diary=()=>{
     }
 
     useEffect(() => {
-     
-        Diaries();
-     }, [myDiary]);
-
+        console.log("query changing")
+        console.log(query);
+        if(query.length>0){
+            console.log("I'mhere")
+            let sample=[...myDiary];
+            sample = sample.filter((diary)=>{return(diary.title.match(query));});
+            setDiary(sample);
+            setLoading("none")
+            if(sample.length==0){   
+                Diaries();
+            }
+           
+        }
+        else{
+            Diaries();
+        }
+    },[query]);
+    
     return(
         <Flex 
           direction="column"
@@ -206,10 +225,11 @@ const Diary=()=>{
             <Textarea
                 w="full"
                 h="60vh"
-                bg="#292C2D"
+                
+                bgColor="alphaBlack.700"
                 value={message}
                 focusBorderColor="#292C2D"
-                border="none"
+                border="1px solid white"
                 _focus={{boxShadow:"0px 5px 5px black"}}
                 onChange={getMessage}
                 boxShadow="0px 5px 5px black"
@@ -289,6 +309,20 @@ const Diary=()=>{
             My Diary
         </Text>
 
+
+            <InputGroup w={{base:"90%",md:"50%"}}>
+                <Input
+                    pr='4.5rem' 
+                    onChange={(e)=>setQuery(e.target.value)}
+                    textColor="white"
+                />
+                <InputRightElement width='4.5rem'>
+                <Button>
+                    Search
+                </Button>
+                </InputRightElement>
+            </InputGroup>
+
         <VStack
           spacing={6}
           mt={10}
@@ -311,6 +345,7 @@ const Diary=()=>{
         >
             {
                 (loading=="none" && myDiary.map((entry)=> {return(
+                    
                     <Box
                      
                      w="full"
@@ -362,6 +397,7 @@ const Diary=()=>{
 
                         </Button>   
                     </Box>
+                   
                 )
                 
             })
